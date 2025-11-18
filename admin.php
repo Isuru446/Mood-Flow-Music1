@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 
-// Simple admin authentication (username + password)
+// Simple admin authentication
 if (isset($_POST['username']) && isset($_POST['password'])) {
   $user = trim($_POST['username']);
   $pass = $_POST['password'];
@@ -109,3 +109,4 @@ if (!empty($_SESSION['is_admin'])) {
 </div>
 </body>
 </html>
+
