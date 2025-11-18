@@ -1,0 +1,104 @@
+/* Dark-overlay over attached background image: use assets/background.jpg (place the image there) */
+:root{
+		--bg-overlay-start: rgba(3,12,34,0.50);
+		--bg-overlay-end:   rgba(2,8,26,0.72);
+		--surface:           rgba(6,14,30,0.68); /* main container / panel */
+		--surface-2:         rgba(8,18,38,0.54); /* cards */
+		--panel-bg:          rgba(6,12,24,0.64);
+		--border:            rgba(255,255,255,0.06);
+		--muted:             rgba(180,200,220,0.82);
+		--text:              #eaf6ff; /* light text for readability */
+		--text-dark:         #061428; /* dark text for inverted states */
+		--accent:            #57a8ff;
+		--accent-2:          #1e6fe0;
+		--radius:            12px;
+		--shadow-1:          0 8px 24px rgba(3,6,12,0.55);
+		--shadow-2:          0 18px 48px rgba(3,6,12,0.7);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	/* Use the provided image as page background. Place your attached image at assets/background.jpg */
+	background: linear-gradient(180deg, var(--bg-overlay-start), var(--bg-overlay-end)), url('assets/background.jpg') center/cover fixed;
+	background-size: cover;
+	color:var(--text);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	padding:28px;
+}
+
+.container{
+	max-width:1100px;
+	margin:0 auto;
+	background: var(--surface);
+	border-radius: var(--radius);
+	padding:28px;
+	box-shadow: var(--shadow-2);
+	border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Header */
+h1{margin:0 0 8px 0;font-weight:600;letter-spacing:-0.2px}
+p{color:var(--muted);margin-top:0}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+/* Mood grid */
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:14px}
+.mood-tile{position:relative;display:flex;align-items:center;justify-content:center;padding:20px;border-radius:10px;cursor:pointer;text-decoration:none;transition:transform 160ms ease, box-shadow 160ms ease}
+.mood-tile{background:rgba(0,0,0,0.72);color:var(--text);border:1px solid rgba(255,255,255,0.06);box-shadow:var(--shadow-1);transition:transform 160ms ease, box-shadow 160ms ease, background-color 220ms ease, border-color 220ms ease}
+/* light variant (use when you want a white-looking tile) */
+.mood-tile--light{background:rgba(255,255,255,0.94);color:var(--text-dark);border:1px solid rgba(0,0,0,0.06);box-shadow:0 6px 18px rgba(0,0,0,0.35);transition:background-color 220ms ease, color 200ms ease}
+/* Hover: make tiles translucent so background shows through */
+.mood-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-2);background-color:rgba(0,0,0,0.18);border-color:rgba(255,255,255,0.12);backdrop-filter:blur(6px)}
+.mood-tile--light:hover{background-color:rgba(255,255,255,0.12);color:var(--text);border-color:rgba(255,255,255,0.06);backdrop-filter:blur(6px)}
+.mood-tile strong{font-size:1.05rem}
+.mood-tile .meta{font-size:0.85rem;color:rgba(255,255,255,0.82)}
+
+/* Card / song */
+.card{background:var(--surface-2);border-radius:10px;padding:14px;margin:14px 0;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow-1)}
+.card--clickable{transition:transform 180ms ease,box-shadow 180ms ease}
+.card--clickable:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}
+.song{display:flex;gap:12px;align-items:flex-start}
+.song .info{flex:1}
+.song strong{display:block;font-size:1.05rem;color:var(--text)}
+.meta{color:var(--muted);font-size:0.9rem;margin-top:6px}
+
+audio{width:100%;margin-top:10px;border-radius:8px}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;cursor:pointer}
+.btn--muted{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+/* Table */
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{color:var(--muted);text-align:left;padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.04)}
+td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,0.02)}
+a{color:var(--accent);text-decoration:none}
+
+/* Forms */
+form label{display:block;margin-bottom:8px;color:var(--muted)}
+form input[type="text"], form select, form input[type="password"]{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);color:var(--text);padding:10px;border-radius:8px;width:100%}
+.form-row{display:flex;gap:12px}
+.form-actions{margin-top:14px;display:flex;gap:10px;align-items:center}
+
+/* Panels (dark translucent, no white) */
+.panel{background:var(--panel-bg);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow-1);color:var(--text)}
+.form-panel{background:var(--panel-bg);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow-1);color:var(--text)}
+
+.admin-link{color:var(--accent);text-decoration:none;font-weight:600}
+
+/* Utilities */
+.muted{color:var(--muted)}
+.text-right{text-align:right}
+
+@media (max-width:720px){
+		.top-row{flex-direction:column;align-items:flex-start}
+		.song{flex-direction:column}
+		select[name="mood"]{width:100%}
+}
+
+/* Small utilities */
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:var(--muted)}
