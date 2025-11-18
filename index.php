@@ -1,7 +1,6 @@
 <?php
 require 'config.php';
 
-// Get distinct moods for selection
 $stmt = $pdo->query("SELECT DISTINCT mood FROM songs WHERE mood <> '' ORDER BY mood");
 $moods = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
@@ -59,3 +58,4 @@ $moods = $stmt->fetchAll(PDO::FETCH_COLUMN);
 </div>
 </body>
 </html>
+
